@@ -1,0 +1,106 @@
+
+.slide-container {
+    width: 100%;
+    margin: auto; 
+
+}
+  
+
+.specificButton{
+  border-radius: 0px;
+  width: 250px;
+  height:50px;
+  background-color: white;
+  border-color:black;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  color: #7c7c7c;
+
+}
+    
+  
+  .each-slide > div {
+    display: flex;
+    margin-top: 100;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    height: 800px;
+    background-color: darkgray;
+    position: relative;
+}
+  
+  .each-slide span {
+      left: 2%;                        /* horizontal alignment */
+      top: 2%;   
+      
+    padding: 20px;
+    font-size: 30px;
+    color: white;
+    border-right: 5px solid brown;
+
+}
+  
+  .each-fade {
+    display: flex;
+  }
+  
+  .each-fade .image-container {
+    width: 75%;
+    overflow: hidden;
+  }
+  
+  .each-fade .image-container img {
+    width: 100%;
+  }
+  
+  .each-fade h2 {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background: #adceed;
+  }
+   div ul li.txt{
+
+    display: block;
+    color: white;
+    text-align: left;
+    font-size: 17px;
+    padding: 10px 10px;
+    text-decoration: none;
+    overflow: hidden;
+
+}
+h3{
+    display:inline-flex;
+    padding-left: 150px;
+    color: brown;
+}
+button{
+    border-radius: 20px;
+    width: 250px;
+    height:50px;
+    background-color: white;
+    border-color: rgb(97, 19, 19);
+    -webkit-transition-duration: 0.4s; /* Safari */
+    color: #7c7c7c;
+
+}
+button:hover{
+    background-color: rgb(97, 19, 19);
+    color: white;
+
+    
+}
+.specificButton:hover{
+  background-color: black;
+  
+}
+.divColor{
+  background-color: rgb(222, 222, 222);
+}
+body{
+  background-color: rgb(240, 240, 240);
+
+}

@@ -1,0 +1,94 @@
+import React, { Component, createContext } from "react";
+import Samples from './Samples';
+import {useGlobalState} from './GlobalState';
+import  { useState,useEffect } from 'react';
+
+// Helper functions
+
+function move(array, oldIndex, newIndex) {
+  if (newIndex >= array.length) {
+    newIndex = array.length - 1;
+  }
+  array.splice(newIndex, 0, array.splice(oldIndex, 1)[0]);
+  return array;
+}
+
+function moveElement(array, index, offset) {
+  const newIndex = index + offset;
+
+  return move(array, index, newIndex);
+}
+
+function VALUES ()  {
+  const [value] = useGlobalState('items');
+}
+
+// Context
+
+const GridContext = createContext({ items: [] });
+function tst(){
+}
+export function GridProvider (props) {
+  //constructor(props) {
+
+    // super(props);
+    // console.log("CONSTRUCT");
+    // this.state = {
+    //   items: Samples,
+    //   moveItem: this.moveItem,
+    //   setItems: this.setItems
+    // };
+ // }
+
+//  const [megaState, setMegaState] = useState({
+//   showHomeButton: false,
+//   items : [],
+//   moveItem : items[0],
+//   search: ''
+// })
+
+ const [items, setItems] = useState(Samples);
+ var [moveItem, moveItemm] = useState({});
+
+ const providerValue = React.useMemo(() => ({
+  items, setItems,
+  moveItem, moveItemm,
+}), [items, moveItem]);
+
+ useEffect(() => {
+  // Update the document title using the browser API
+  
+ // setItems(Samples);
+});
+
+moveItem = (sourceId, destinationId) => {
+    const sourceIndex =items.findIndex(
+      item => item.id === sourceId
+    );
+    const destinationIndex = items.findIndex(
+      item => item.id === destinationId
+    );
+
+    // If source/destination is unknown, do nothing.
+    if (sourceId === -1 || destinationId === -1) {
+      return;
+    }
+
+    const offset = destinationIndex - sourceIndex;
+
+    //  this.setState(state => ({
+    //    items: moveElement(state.items, sourceIndex, offset)
+    //  }));
+   //  setItems((items)=>{moveElement(items, sourceIndex, offset)})
+setItems(items =>{{ moveElement(items, sourceIndex, offset)}})
+   // setItems = 
+  };
+  var v =  useGlobalState('items');
+  return (
+    <GridContext.Provider value={providerValue}>
+      {props.children}
+    </GridContext.Provider>
+  );
+}
+
+export default GridContext;
