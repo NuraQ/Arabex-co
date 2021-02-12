@@ -4,7 +4,6 @@ import archh from './archh.jpg'
 //import ReactDOM from 'react-dom';
 // Usually we use one component per file, here we have more
 import { MeventEmitter, url_g, User_g } from './globals.js'
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Link, NavLink, Redirect, Prompt, Route } from 'react-router-dom';
 import { withRouter } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

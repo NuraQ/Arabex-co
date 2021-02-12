@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { BrowserRouter as Router, Link, NavLink, Redirect, Prompt, Route } from 'react-router-dom';
 import LOGO from'./LOGO.jpg';
