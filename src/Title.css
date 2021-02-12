@@ -1,0 +1,8 @@
+.Title {
+  box-sizing: border-box;
+  display: flex;
+  width: 220%;
+  justify-content: space-evenly;
+  background-color: teal;
+  color: #fff;
+}

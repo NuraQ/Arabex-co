@@ -1,0 +1,72 @@
+
+  .grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+    
+  }
+  
+  .grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    font-size: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    flex: 33%;
+    max-width: 33%;
+    padding: 0 1px;
+    
+  }
+  .colorBack{
+    
+  }
+
+  .tdt{
+    display: inline;
+    overflow: hidden;
+    white-space: nowrap;
+      color: rgb(247, 242, 242); 
+      letter-spacing: -1px;      font: bold 20px/22px Helvetica, Sans-Serif; 
+      font-size: 11px;
+      background: rgb(0, 0, 0); /* fallback color */
+      background: rgba(0, 0, 0, 0.4);
+      padding: 10px; 
+  }
+  .outterDiv{
+    text-align: center;
+  }
+  .item {
+    padding: 10px;
+  }
+  
+  img {
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  #svgelem {
+    position: relative;
+    left: 10%;
+    -webkit-transform: translateX(-20%);
+    -ms-transform: translateX(-20%);
+    transform: translateX(-20%);
+ }
+  .responsive {
+    
+    height: auto;
+  }
+  @media screen and (max-width: 800px) {
+  .grid-item {
+    flex: 50%;
+    max-width: 50%;
+    
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .grid-item {
+    flex: 100%;
+    max-width: 100%;
+  }
+}

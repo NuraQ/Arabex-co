@@ -1,0 +1,106 @@
+
+ img.wid{
+    -webkit-transition: width 0.6s, height 0.6s; /* For Safari 3.1 to 6.0 */
+    
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+position: relative;
+}
+ img.imagesGrid:hover{
+   cursor: pointer;
+    width: 103%;
+    height: 204px;;
+    opacity: 0.7;
+    background-color: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+    box-shadow: -10px 10px 5px rgba(0, 0, 0, 0.8);
+}
+.wr {
+    -webkit-transition: width 0.6s, height 0.6s; /* For Safari 3.1 to 6.0 */
+
+overflow: hidden;
+object-fit: cover;
+
+
+}
+h2 { 
+    position: absolute; 
+    top: 124px; 
+    left: 0; 
+    width: 100%; 
+  }
+  span.editTxt{
+    text-indent: 100%;
+    white-space: nowrap;
+    display: inline-block;
+    overflow: hidden;
+  }
+  img.imagesGrid.wr h2 span.editTxt:hover{
+
+  }
+span.editTxt:hover { 
+
+ }
+ span.col-sm-3:hover span.editTxt{
+  display: inline;
+  overflow: hidden;
+  white-space: nowrap;
+    color: rgb(247, 242, 242); 
+    letter-spacing: -1px;      font: bold 20px/22px Helvetica, Sans-Serif; 
+    font-size: 11px;
+    background: rgb(0, 0, 0); /* fallback color */
+    background: rgba(0, 0, 0, 0.4);
+    padding: 10px; 
+ }
+ 
+ 
+.social-container {
+    background: #eee;
+    padding: 25px 50px;
+  }
+  a.social {
+    margin: 0 1rem;
+    transition: transform 250ms;
+    display: inline-block;
+  }
+  
+  a.social:hover {
+    transform: translateY(-2px);
+  }
+  
+  a.youtube {
+    color: #eb3223;
+  }
+  
+  a.facebook {
+    color: #4968ad;
+  }
+  
+  a.twitter {
+    color: #49a1eb;
+  }
+  
+  a.instagram {
+    color: black;
+  }
+  .text{
+      display: inline;
+    margin-top: 15px;
+}
+
+.vline {
+    left: 2%;                        /* horizontal alignment */
+    top: 2%;   
+  padding: 20px;
+
+  border-right: 1px  solid lightgray;
+}
+span.col-sm > div.imageGrid:hover {
+
+  cursor: pointer;
+  display: inline-flex; 
+  overflow: hidden;
+  justify-items: center;
+  flex-direction: row;
+  box-flex-group: 3
+  }
