@@ -1,5 +1,8 @@
 
 import React from 'react';
+import archh from './archh.jpg'
+//import ReactDOM from 'react-dom';
+// Usually we use one component per file, here we have more
 import { MeventEmitter, url_g, User_g } from './globals.js'
 import './Villa.css';
 
@@ -7,8 +10,6 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { withRouter } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import TextField from '@material-ui/core/TextField';
-import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
 import {
     faYoutube,
     faFacebook,
@@ -163,6 +164,9 @@ class Villlas extends React.Component {
         this.decrement = this.decrement.bind(this);
         this.toggle = this.toggle.bind(this);
         this.onDragEnd = this.onDragEnd.bind(this);
+
+
+
     }
     onDragEnd(result) {
         // dropped outside the list
@@ -274,20 +278,21 @@ class Villlas extends React.Component {
 
         const ListGridd = () => {
             let ind = this.state.index;
+console.log("perso"+JSON.stringify(this.state.persons[0]))
             return (
                 <div>
-                    <section class="row">
-                        {this.state.persons[0] ? (
-                            <div class="row">
-                                <img class=" col-md-8 imagesGrid wr" style={{ paddingBottom: "20px" }} src={encodeURI(url2 + `${this.state.persons[0].image}` + "&&type=" + `${this.state.persons[0].category_id}`)}></img>
-                                <div class="col" >
-                                    <img class="row imagesGrid wr" src={encodeURI(url2 + `${this.state.persons[0].image}` + "&&type=" + `${this.state.persons[0].category_id}`)}></img>
-                                    <div class="" style={{ paddingTop: "20px", paddingBottom: "20px" }}>  <img class=" row imagesGrid wr" src={encodeURI(url2 + `${this.state.persons[0].image}` + "&&type=" + `${this.state.persons[0].category_id}`)}></img>
-                                    </div></div>
-                            </div>
-                        ) : <div></div>}
-                        {this.state.persons.slice(ind, ind + 12).map((person, index) => <span class="col-sm-3" ><  img class="imagesGrid wr" src={encodeURI(url2 + `${person.image}` + "&&type=" + `${person.category_id}`)} onClick={() => this.passData(person.name, person.id, encodeURI(url2 + `${person.image}` + "&&type=" + `${person.category_id}`), person.area, person.year, person.images, person.location, person.category_id)} />
-
+                    <section class="row"> 
+                    {this.state.persons[0] ? (
+                        <div class="row">
+                    <img class="col-12 col-md-8 imagesGrid wr"  style={{paddingBottom: "20px"}}src={encodeURI(url2 + `${this.state.persons[0].image}` + "&&type=" + `${this.state.persons[0].category_id}`)}></img> 
+                   <div class="col" > 
+                    <img class="row imagesGrid wr"src={encodeURI(url2 + `${this.state.persons[0].image}` + "&&type=" + `${this.state.persons[0].category_id}`)}></img> 
+                  <div class=""  style={{paddingTop: "20px",paddingBottom:"20px"}}>  <img class=" row imagesGrid wr"src={encodeURI(url2 + `${this.state.persons[0].image}` + "&&type=" + `${this.state.persons[0].category_id}`)}></img> 
+                    </div></div>
+                    </div>
+                    ) : <div></div>}
+                        {this.state.persons.slice(ind, ind + 12).map((person, index) => <span class="col-sm-3" ><  img class="imagesGrid wr " src={encodeURI(url2 + `${person.image}` + "&&type=" + `${person.category_id}`)} onClick={() => this.passData(person.name, person.id, encodeURI(url2 + `${person.image}` + "&&type=" + `${person.category_id}`), person.area, person.year, person.images, person.location, person.category_id)} />
+                           
 
                             <h2><span className="editTxt" >{person.name}</span></h2>
                             <br></br>
@@ -311,8 +316,11 @@ class Villlas extends React.Component {
                 {/*}  <div class="row">{list}</div>*/}
                 <div class="container"> <ListGridd /> </div>
                 <div class="container">
+
                     <div > <button onClick={() => { this.decrement() }}>Previous Page</button>{this.state.dontSlide}</div>
+
                     <span class="col-sm"><ColoredLineThin color="rgb(128, 128, 128)" /></span>
+
                     <div > <button onClick={() => { this.toggle() }}>Next Page</button>{this.state.dontSlide}</div>
                 </div>
                 <div>{this.state.index}</div>

@@ -15,9 +15,13 @@ const ExtraImgs = ({ ELEMENT }) => {
 
   if (ELEMENT) {
     return (ELEMENT.map(per => (
+
       <div className="grid-item" >
+
             <div className="colorBack">
               <img class="imgStyle " src={encodeURI("http://127.0.0.1:9999/load_image/?img=" + `${per.image}` + "&&type=" + `${per.category_id}`)} />
+              
+  
         </div>
 
       </div>
