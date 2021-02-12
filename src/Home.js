@@ -43,7 +43,6 @@ const properties = {
     console.log(`slide transition from ${oldIndex} to ${newIndex}`);
   }
 }
-
 const slideImages = [
   `https://www.urbanlivingdesigns.in/assets/images/urbanliving/u1-copy.jpg`,
   `https://images.pexels.com/photos/1034662/pexels-photo-1034662.jpeg?cs=srgb&dl=architecture-buildings-cars-1034662.jpg&fm=jpg`,

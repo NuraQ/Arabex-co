@@ -13,8 +13,8 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 import './log.css'
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBInput } from 'mdbreact';
-import '@fortawesome/fontawesome-free/css/all.min.css'; import
-'mdbreact/dist/css/mdb.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'mdbreact/dist/css/mdb.css';
 
 
 class LoginPage extends Component {

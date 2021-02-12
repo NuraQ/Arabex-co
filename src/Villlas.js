@@ -160,7 +160,6 @@ class Villlas extends React.Component {
             img: null,
 
         }
-
         this.passData = this.passData.bind(this);
         this.decrement = this.decrement.bind(this);
         this.toggle = this.toggle.bind(this);
