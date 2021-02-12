@@ -1,7 +1,6 @@
 import React from 'react';
 import DatePicker from 'react-date-picker';
 import LoggedHeader from './LoggedHeader'
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 //import ReactDOM from 'react-dom';
 // Usually we use one component per file, here we have more

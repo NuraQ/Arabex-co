@@ -3,7 +3,6 @@ import React from "react";
 import { useLocation } from "react-router";
 import { useState, useEffect } from 'react';
 import './Add.css'
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 const ExtraImgs = ({ ELEMENT }) => {
     var images_array = [];

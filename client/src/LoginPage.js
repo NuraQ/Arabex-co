@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 
 import './App.css';
-import Cookies from 'js-cookie';
 
 import App from './App';
 import Add from './Add';

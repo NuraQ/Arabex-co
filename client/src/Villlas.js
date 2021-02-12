@@ -6,7 +6,6 @@ import archh from './archh.jpg'
 import { MeventEmitter, url_g, User_g } from './globals.js'
 import './Villa.css';
 
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { withRouter } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

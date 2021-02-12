@@ -1,0 +1,23 @@
+{
+ "name": "sami",
+ "version": "0.1.0",
+ "private": true,
+ "main": "app.js",
+ "scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "start": "node app.js"
+ },
+ "author": "Amer Qasrawi",
+ "license": "Qasrawi",
+ "dependencies": {
+  "bcrypt": "^3.0.8",
+  "cookie-parser": "^1.4.5",
+  "cookies": "^0.8.0",
+  "express": "^4.16.4",
+  "express-session": "^1.17.1",
+  "js-cookie": "^2.2.1",
+  "jsonwebtoken": "^8.5.1",
+  "multer": "^1.4.2",
+  "mysql": "^2.18.1"
+ }
+}

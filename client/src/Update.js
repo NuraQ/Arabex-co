@@ -6,11 +6,8 @@ import DND from './DND'
 // Usually we use one component per file, here we have more
 import { MeventEmitter, url_g, User_g } from './globals.js'
 import './Villa.css';
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { createGlobalState } from 'react-hooks-global-state';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Link, NavLink, Redirect, Prompt, Route } from 'react-router-dom';
 import { withRouter } from "react-router";
+import { setValues } from './GlobalState';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
@@ -30,17 +27,7 @@ import Elem from './Elem'
 import Home from './Home'
 const grid = 8;
 
-let initialState = {items:[{
-  src:
-    "https://images.pexels.com/photos/2575279/pexels-photo-2575279.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-  id: "8c444080-9e02-4946-9205-ea65ed81a66f"
-},
-{
-  src:
-    "https://images.pexels.com/photos/1029609/pexels-photo-1029609.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-  id: "0a62f9fa-6f5c-4b09-8ff0-d2b9169426f9"
-}]} ;
-let { useGlobalState } ={};
+
 
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
@@ -207,26 +194,30 @@ class Villlas extends React.Component {
     });
   }
 
-  async componentDidMount() {
-    
-     
+  async componentWillMount() {
+
     console.log("fdsfsfs" + this.props.match.params.type
     );
     if (this.props.location.type !== null)
       console.log("dsdsdsDsdsdsdsdsds" + this.props.location.type);
     var url = this.state.mainUrl + "/" + "?type=" + this.props.match.params.type;
-
     console.log("URL" + url);
     console.log("DSd");
     let response = await fetch(url)
     let data = await response.json();
     this.setState({ persons: data, loading: false });
-    
-    initialState = { items: this.state.persons };
-     useGlobalState = createGlobalState(initialState);
+      if (this.state.persons && this.state.persons.length > 0) {
+        console.log("original" + this.state.persons)
+        setValues(this.state.persons)
+
+        //setGlobalState(this.state.persons);
+      }
+
   }
 
+  componentWillUnmount() {
 
+  }
   passData(name, ID, img, area, year, images, location, cat_id) {
     console.log("locTest" + location);
     this.props.history.push({
@@ -298,8 +289,8 @@ class Villlas extends React.Component {
     }
 
     function drag(event) {
-        event.dataTransfer.setData("text/plain", event.target.id);
-      }
+      event.dataTransfer.setData("text/plain", event.target.id);
+    }
 
     const ListGridd = () => {
       let ind = this.state.index;
@@ -328,7 +319,7 @@ class Villlas extends React.Component {
 
       <div >
         {/*}  <div class="row">{list}</div>*/}
-        <div class="container"> <DND itemss = {this.state.persons}></DND> </div>
+        <div class="container"> <DND itemss={this.state.persons}></DND> </div>
         <div class="container">
 
           <div > <button onClick={() => { this.decrement() }}>Previous Page</button>{this.state.dontSlide}</div>
@@ -370,5 +361,4 @@ class Villlas extends React.Component {
 
 
 }
-
-export default withRouter(Villlas,{useGlobalState});
+export default withRouter(Villlas);
