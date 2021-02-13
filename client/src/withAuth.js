@@ -13,7 +13,7 @@ export default function withAuth(ComponentToProtect) {
 
     componentDidMount() {
       
-      fetch('http://127.0.0.1:9999/checkToken',{ headers: {
+      fetch('https://arabex-server.herokuapp.com/checkToken',{ headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },

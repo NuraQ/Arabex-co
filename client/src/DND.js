@@ -30,7 +30,7 @@ function DND() {
           <DragItem key={item.id} id={item.id} onMoveItem={moveItem}>
 
             <GridItem>
-              <GridImage src={encodeURI("http://127.0.0.1:9999/load_image/?img=" + `${item.image}` + "&&type=" + `${item.category_id}`)}>
+              <GridImage src={encodeURI("https://arabex-server.herokuapp.com/load_image/?img=" + `${item.image}` + "&&type=" + `${item.category_id}`)}>
                 <button className="btnInfo" onClick = {()=>passData(item,history)}  >{item.name}</button>
 
               </GridImage>

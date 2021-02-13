@@ -16,7 +16,7 @@ const ExtraImgs = ({ ELEMENT }) => {
                     <div class="row">
 
                         <div class="col-sm" style={{ backgroundColor: "darkgrey" }}>
-                            <img class="imgStyle" src={encodeURI("http://127.0.0.1:9999/load_image/?img=" + `${img}` + "&&type=" + `${ELEMENT.category_id}`)} />
+                            <img class="imgStyle" src={encodeURI("https://arabex-server.herokuapp.com/load_image/?img=" + `${img}` + "&&type=" + `${ELEMENT.category_id}`)} />
 
 
                         </div>
@@ -37,7 +37,7 @@ function UpdateElement() {
     const [element, setElement] = useState({})
     const [imageName, setimgName] = useState("")
     const [type, setType] = useState()
-    let imgServerUrl = "http://127.0.0.1:9999/load_image?img=" + imageName + "&&type=" + type;
+    let imgServerUrl = "https://arabex-server.herokuapp.com/load_image?img=" + imageName + "&&type=" + type;
 
     useEffect(() => {
         // Update the document title using the browser API
@@ -75,7 +75,7 @@ function UpdateElement() {
                 <form>
                     <fieldset>
                         <legend><span class="number">1</span>{element.name}</legend>
-                        <img src={encodeURI("http://127.0.0.1:9999/load_image/?img=" + `${element.image}` + "&&type=" + `${element.category_id}`)}></img>
+                        <img src={encodeURI("https://arabex-server.herokuapp.com/load_image/?img=" + `${element.image}` + "&&type=" + `${element.category_id}`)}></img>
                         <label>Name</label> <input type="text" name="field1" value={element.name} />
                         <label>location</label><input type="email" name="field2" value={element.location} />
                         <label>Description</label><textarea name="field3" value={element.description}></textarea>
@@ -95,7 +95,7 @@ function UpdateElement() {
                 <form>
                     <fieldset>
                         <legend><span class="number">1</span> Update Info here</legend>
-                        <img src={encodeURI("http://127.0.0.1:9999/load_image/?img=" + `${element.image}` + "&&type=" + `${element.category_id}`)}></img>
+                        <img src={encodeURI("https://arabex-server.herokuapp.com/load_image/?img=" + `${element.image}` + "&&type=" + `${element.category_id}`)}></img>
                         <label for="job">New Name:</label>
                         <input type="text" name="field1" placeholder="New project name *" />
                         <label for="job">New Location:</label>

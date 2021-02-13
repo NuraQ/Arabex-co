@@ -57,7 +57,7 @@ class Add extends React.Component {
     }
 
     async fetchImage(data) {
-        var url = "http://127.0.0.1:9999/file_upload";
+        var url = "https://arabex-server.herokuapp.com/file_upload";
 
         const response = await fetch(url, {
             method: 'POST',
@@ -75,7 +75,7 @@ class Add extends React.Component {
 
     }
     componentDidMount() {
-        /* var urlll = "http://127.0.0.1:9999/redirectPage/";
+        /* var urlll = "https://arabex-server.herokuapp.com/redirectPage/";
  
          fetch(urlll, {
              method: 'POST',
@@ -100,7 +100,7 @@ class Add extends React.Component {
         //if (!this.isUploading) return;
         console.log("dddd===================dddddddd");
 
-        let url = "http://127.0.0.1:9999/file_upload";
+        let url = "https://arabex-server.herokuapp.com/file_upload";
         var imageName = this.state.imageName;
         const data = new FormData();
         data.append("file", this.state.imageSource);
@@ -137,7 +137,7 @@ class Add extends React.Component {
     async doFetch() {
         //console.log(this.state);
 
-        var url = "http://127.0.0.1:9999/add_items/:id"
+        var url = "https://arabex-server.herokuapp.com/add_items/:id"
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
@@ -217,7 +217,7 @@ class Add extends React.Component {
     }
     handleDelete = () => {
         let { ID } = { ID: 24 };
-        let url = "http://127.0.0.1:9999/item_del/:id"
+        let url = "https://arabex-server.herokuapp.com/item_del/:id"
         fetch(url, {
             method: "DELETE",
 
@@ -230,7 +230,7 @@ class Add extends React.Component {
     addNewAdmin() {
         var adminId = this.state.adminId;
         var adminPassword = this.state.adminPassword;
-        let url = "http://127.0.0.1:9999/add_admin/:id/"
+        let url = "https://arabex-server.herokuapp.com/add_admin/:id/"
         fetch(url, {
             method: "post",
 
@@ -245,8 +245,8 @@ class Add extends React.Component {
     onChange2 = date => this.setState({ ExpirationDate: date, date: date })
     onChange = date => this.setState({ year: date })
     render() {
-        let imgServerUr2 = "http://127.0.0.1:9999/uplds/" + this.state.imageName;
-        let imgServerUrl = "http://127.0.0.1:9999/load_image?img=" + this.state.imageName + "&&type=" + this.state.type;
+        let imgServerUr2 = "https://arabex-server.herokuapp.com/uplds/" + this.state.imageName;
+        let imgServerUrl = "https://arabex-server.herokuapp.com/load_image?img=" + this.state.imageName + "&&type=" + this.state.type;
         return (
             <div className='row' >
 

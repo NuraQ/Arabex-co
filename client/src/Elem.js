@@ -132,7 +132,7 @@ class Elem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            mainUrl: "http://127.0.0.1:9999",
+            mainUrl: "https://arabex-server.herokuapp.com",
             persons: [],
             slideIndex: 0,
             imageIndex: 0,

@@ -155,7 +155,7 @@ class Villlas extends React.Component {
     this.state = {
       dontSlide: true,
 
-      mainUrl: "http://127.0.0.1:9999",
+      mainUrl: "https://arabex-server.herokuapp.com",
       persons: [],
       index: 0,
       img: null,

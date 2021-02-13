@@ -72,7 +72,7 @@ class About extends Component {
     super(props);
     this.state = {
 
-      mainUrl: "http://127.0.0.1:9999",
+      mainUrl: "https://arabex-server.herokuapp.com",
       owners: [],
 
     }

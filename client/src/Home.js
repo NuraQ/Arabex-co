@@ -19,7 +19,7 @@ const ExtraImgs = ({ ELEMENT }) => {
       <div className="grid-item" >
 
             <div className="colorBack">
-              <img class="imgStyle " src={encodeURI("http://127.0.0.1:9999/load_image/?img=" + `${per.image}` + "&&type=" + `${per.category_id}`)} />
+              <img class="imgStyle " src={encodeURI("https://arabex-server.herokuapp.com/load_image/?img=" + `${per.image}` + "&&type=" + `${per.category_id}`)} />
               
   
         </div>
@@ -84,7 +84,7 @@ class Home extends React.Component {
     this.state = {
       appeardara: false,
       loading: true,
-      mainUrl: "http://127.0.0.1:9999",
+      mainUrl: "https://arabex-server.herokuapp.com",
 
       persons: [],
       productTemp: []
