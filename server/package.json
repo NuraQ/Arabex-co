@@ -2,10 +2,10 @@
  "name": "sami",
  "version": "0.1.0",
  "private": true,
- "main": "app.js",
+ "main": "samiServer.js",
  "scripts": {
   "test": "echo \"Error: no test specified\" && exit 1",
-  "start": "node app.js"
+  "start": "node samiServer.js"
  },
  "author": "Amer Qasrawi",
  "license": "Qasrawi",
