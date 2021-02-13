@@ -23,7 +23,8 @@ const {
      SESS_NAME = 'sid',
      CLEARDB_DATABASE_HOST = 'localhost',
      CLEARDB_DATABASE_USERNAME = 'root',
-     CLEARDB_DATABASE_PASSWORD = ''
+     CLEARDB_DATABASE_PASSWORD = '',
+     CLEARDB_DATABASE_NAME
      
  } = process.env
  //const IN_PROD = NODE_ENV === 'production'
