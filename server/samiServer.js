@@ -55,8 +55,8 @@ db.connect(function (err) {
 
 
 const args = process.argv;   // needed for args
-var port = 9999;             // default port number 
-if (args.length > 2) port = parseInt(args[2]);
+var port = process.env.PORT || 9999;             // default port number 
+// if (args.length > 2) port = parseInt(args[2]);
 
 var bodyParser = require('body-parser');
 var multer = require('multer');
