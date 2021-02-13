@@ -52,6 +52,10 @@ var db = mysql.createConnection({
 });
 //now connect to database
 db.connect(function (err) {
+    console.log(CLEARDB_DATABASE_HOST);
+    console.log(CLEARDB_DATABASE_USERNAME);
+    console.log(CLEARDB_DATABASE_PASSWORD);
+    console.log(CLEARDB_DATABASE_NAME);
     if (err) throw err;
     console.log("Database Connected!");
 });
