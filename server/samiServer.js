@@ -20,7 +20,10 @@ const {
      NODE_ENV = 'development',
      SESS_LIFETIME = TWO_HOURS,
      SESS_SECRET = "generateNonce(),",
-     SESS_NAME = 'sid' 
+     SESS_NAME = 'sid',
+     CLEARDB_DATABASE_HOST = 'localhost',
+     CLEARDB_DATABASE_USERNAME = 'root',
+     CLEARDB_DATABASE_PASSWORD = ''
      
  } = process.env
  //const IN_PROD = NODE_ENV === 'production'
@@ -40,12 +43,11 @@ const {
  }))
 
 let checkId=""
-const password = "" ; //if no password leave use ''  
 var db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: password,
-    database: "Sami"
+    host: CLEARDB_DATABASE_HOST,
+    user: CLEARDB_DATABASE_USERNAME,
+    password: CLEARDB_DATABASE_PASSWORD,
+    database: CLEARDB_DATABASE_NAME
 });
 //now connect to database
 db.connect(function (err) {
