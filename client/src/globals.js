@@ -1,8 +1,8 @@
 export var url_g = {
     url: "http://192.168.1.113:8080/mevent/"  
-  } 
+  }
   export var mainUrl = {
-    url: "http://127.0.0.1:9999"  
+    url: "https://arabex-server.herokuapp.com"  
   } 
   /* testing */
   const EventEmitter = require('events');
