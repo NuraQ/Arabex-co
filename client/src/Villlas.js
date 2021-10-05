@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { withRouter } from "react-router";
 import "./gallery.css";
+import { mainUrl } from "./globals";
 import GR from "./GR.jpg";
 import "./Villa.css";
 
@@ -138,7 +139,6 @@ class Villlas extends React.Component {
     this.state = {
       dontSlide: true,
 
-      mainUrl: "https://arabex-server.herokuapp.com",
       persons: [],
       index: 0,
       img: null,
@@ -169,8 +169,7 @@ class Villlas extends React.Component {
     console.log("fdsfsfs" + this.props.match.params.type);
     if (this.props.location.type !== null)
       console.log("dsdsdsDsdsdsdsdsds" + this.props.location.type);
-    var url =
-      this.state.mainUrl + "/" + "?type=" + this.props.match.params.type;
+    var url = mainUrl + "/" + "?type=" + this.props.match.params.type;
     console.log("URL" + url);
     console.log("DSd");
     let response = await fetch(url);
@@ -210,7 +209,7 @@ class Villlas extends React.Component {
     this.setState({ index: prev_index - 12 });
   }
   render() {
-    let url2 = this.state.mainUrl + "/load_image/?img=";
+    let url2 = mainUrl + "/load_image/?img=";
     const list = this.state.persons.map((person) => (
       <div key={person.ID}>
         <div class="col-sm">
