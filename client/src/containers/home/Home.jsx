@@ -25,6 +25,7 @@ class Home extends React.Component {
     return (
       <div>
         <Slideshow />
+        xc
         <div className="grid-container">
           <ExtraProjects projects={this.state.persons} />
         </div>

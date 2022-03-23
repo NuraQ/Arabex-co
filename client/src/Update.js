@@ -12,7 +12,6 @@ import DND from "./DND";
 import "./gallery.css";
 import { setValues } from "./GlobalState";
 import GR from "./GR.jpg";
-import "./Villa.css";
 
 const grid = 8;
 
