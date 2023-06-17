@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import './About.css'
-import archh from './archh.jpg'
-import Contact from './ContactUS'
-import Beere from './Beere.jpg'
+import './About.css';
+import archh from './archh.jpg';
+import Beere from './Beere.jpg';
+import Contact from './ContactUS';
 const ColoredLine = ({ color }) => (
   <hr
+  
     style={{
       color: color,
       backgroundColor: color,
