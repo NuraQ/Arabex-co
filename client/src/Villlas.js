@@ -1,29 +1,14 @@
 
 import React from 'react';
-import archh from './archh.jpg'
 //import ReactDOM from 'react-dom';
 // Usually we use one component per file, here we have more
-import { MeventEmitter, url_g, User_g } from './globals.js'
 import './Villa.css';
 
-import { withRouter } from "react-router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import {
-    faYoutube,
-    faFacebook,
-    faTwitter,
-    faInstagram,
-    faThinkPeaks
-} from "@fortawesome/free-brands-svg-icons";
-import {
-    faEnvelope,
-} from "@fortawesome/free-regular-svg-icons";
+import './gallery.css';
 import GR from './GR.jpg';
-import './gallery.css'
 
-import Elem from './Elem'
-import Home from './Home'
 const grid = 8;
 
 
@@ -114,36 +99,7 @@ const ColoredLineThin = ({ color }) => (
 
 function SocialFollow() {
     return (
-        <div className="social-container">
-            <a
-                href="https://www.youtube.com/c/jamesqquick"
-                className="youtube social"
-            >
-                <FontAwesomeIcon icon={faYoutube} size="2x" />
-            </a>
-            <a
-                href="https://www.facebook.com/Arabex-Arab-Experts-For-Architecture-Consultations-377223399037285/"
-                className="facebook social"
-            >
-                <FontAwesomeIcon icon={faFacebook} size="2x" />
-            </a>
-            <a href="https://www.twitter.com/jamesqquick" className="twitter social">
-                <FontAwesomeIcon icon={faTwitter} size="2x" />
-            </a>
-            <a
-                href="https://www.instagram.com/learnbuildteach"
-                className="instagram social"
-            >
-                <FontAwesomeIcon icon={faInstagram} size="2x" />
-            </a>
-            <br></br>
-            <a href="mailto:arabex.eng@gmail.com"
-                className="social">
-
-                <FontAwesomeIcon icon={faEnvelope} size="2x" />
-        arabex.eng@gmail.com
-        </a>
-        </div>
+        <div />
     );
 }
 class Villlas extends React.Component {
@@ -154,7 +110,13 @@ class Villlas extends React.Component {
             dontSlide: true,
 
             mainUrl: "https://arabex-server.herokuapp.com",
-            persons: [],
+            persons: [
+                {
+                    name: 'villa',
+                    image: 'https://www.istockphoto.com/photo/modern-cubic-villa-during-the-day-gm1539960868-525687575?utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fvilla&utm_medium=affiliate&utm_source=unsplash&utm_term=villa%3A%3A%3A'
+                }
+
+            ],
             index: 0,
             img: null,
 
@@ -277,21 +239,22 @@ class Villlas extends React.Component {
 
         const ListGridd = () => {
             let ind = this.state.index;
-console.log("perso"+JSON.stringify(this.state.persons[0]))
+            console.log("perso" + JSON.stringify(this.state.persons[0]))
             return (
                 <div>
-                    <section class="row"> 
-                    {this.state.persons[0] ? (
-                        <div class="row">
-                    <img class="col-12 col-md-8 imagesGrid wr"  style={{paddingBottom: "20px"}}src={encodeURI(url2 + `${this.state.persons[0].image}` + "&&type=" + `${this.state.persons[0].category_id}`)}></img> 
-                   <div class="col" > 
-                    <img class="row imagesGrid wr"src={encodeURI(url2 + `${this.state.persons[0].image}` + "&&type=" + `${this.state.persons[0].category_id}`)}></img> 
-                  <div class=""  style={{paddingTop: "20px",paddingBottom:"20px"}}>  <img class=" row imagesGrid wr"src={encodeURI(url2 + `${this.state.persons[0].image}` + "&&type=" + `${this.state.persons[0].category_id}`)}></img> 
-                    </div></div>
-                    </div>
-                    ) : <div></div>}
+                    <section class="row">
+                        {this.state.persons[0] ? (
+                            <div class="row">
+                                <img class="col-12 col-md-8 imagesGrid wr" style={{ paddingBottom: "20px" }} src={encodeURI(url2 + `${this.state.persons[0].image}` + "&&type=" + `${this.state.persons[0].category_id}`)}></img>
+                                <div class="col" >
+                                    <img class="row imagesGrid wr" src={encodeURI(url2 + `${this.state.persons[0].image}` + "&&type=" + `${this.state.persons[0].category_id}`)}></img>
+                                    <div class="" style={{ paddingTop: "20px", paddingBottom: "20px" }}>  <img class=" row imagesGrid wr" src={encodeURI(url2 + `${this.state.persons[0].image}` + "&&type=" + `${this.state.persons[0].category_id}`)}></img>
+                                    </div></div>
+                            </div>
+                        ) : <div></div>}
+                        {/* {this.state.persons.slice(ind, ind + 12).map((person, index) => <span class="col-sm-3" ><  img class="imagesGrid wr " src={encodeURI(url2 + `${person.image}` + "&&type=" + `${person.category_id}`)} onClick={() => this.passData(person.name, person.id, encodeURI(url2 + `${person.image}` + "&&type=" + `${person.category_id}`), person.area, person.year, person.images, person.location, person.category_id)} /> */}
                         {this.state.persons.slice(ind, ind + 12).map((person, index) => <span class="col-sm-3" ><  img class="imagesGrid wr " src={encodeURI(url2 + `${person.image}` + "&&type=" + `${person.category_id}`)} onClick={() => this.passData(person.name, person.id, encodeURI(url2 + `${person.image}` + "&&type=" + `${person.category_id}`), person.area, person.year, person.images, person.location, person.category_id)} />
-                           
+
 
                             <h2><span className="editTxt" >{person.name}</span></h2>
                             <br></br>
@@ -300,9 +263,6 @@ console.log("perso"+JSON.stringify(this.state.persons[0]))
                         )}
 
                     </section>
-
-
-
 
                 </div>
 
@@ -355,4 +315,4 @@ console.log("perso"+JSON.stringify(this.state.persons[0]))
 
 
 }
-export default withRouter(Villlas);
+export default Villlas

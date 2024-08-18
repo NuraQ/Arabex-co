@@ -1,23 +1,16 @@
 import React from 'react';
-import { withRouter } from "react-router";
-import { url_g } from './globals';
-import archh from './archh.jpg'
-import './Eleme.css'
+import './Eleme.css';
 import GR from './GR.jpg';
-import Update from './Update';
 
+// import {
+//     faFacebook, faInstagram, faTwitter, faYoutube
+// } from "@fortawesome/free-brands-svg-icons";
+// import {
+//     faEnvelope
+// } from "@fortawesome/free-regular-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import CrossfadeImage from 'react-crossfade-image';
 import { Slide } from 'react-slideshow-image';
-import CrossfadeImage from 'react-crossfade-image';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faYoutube,
-    faFacebook,
-    faTwitter,
-    faInstagram
-} from "@fortawesome/free-brands-svg-icons";
-import {
-    faEnvelope,
-} from "@fortawesome/free-regular-svg-icons";
 
 //import ReactDOM from 'react-dom';
 // Usually we use one component per file, here we have more
@@ -29,30 +22,30 @@ function SocialFollow() {
                 href="https://www.youtube.com/c/jamesqquick"
                 className="youtube social"
             >
-                <FontAwesomeIcon icon={faYoutube} size="2x" />
+                {/* <FontAwesomeIcon icon={faYoutube} size="2x" /> */}
             </a>
             <a
                 href="https://www.facebook.com/Arabex-Arab-Experts-For-Architecture-Consultations-377223399037285/"
                 className="facebook social"
             >
-                <FontAwesomeIcon icon={faFacebook} size="2x" />
+                {/* <FontAwesomeIcon icon={faFacebook} size="2x" /> */}
             </a>
             <a href="https://www.twitter.com/jamesqquick" className="twitter social">
-                <FontAwesomeIcon icon={faTwitter} size="2x" />
+                {/* <FontAwesomeIcon icon={faTwitter} size="2x" /> */}
             </a>
             <a
                 href="https://www.instagram.com/learnbuildteach"
                 className="instagram social"
             >
-                <FontAwesomeIcon icon={faInstagram} size="2x" />
+                {/* <FontAwesomeIcon icon={faInstagram} size="2x" /> */}
             </a>
             <br></br>
             <a href="mailto:arabex.eng@gmail.com"
                 className="social">
 
-                <FontAwesomeIcon icon={faEnvelope} size="2x" />
-        arabex.eng@gmail.com
-        </a>
+                {/* <FontAwesomeIcon icon={faEnvelope} size="2x" /> */}
+                arabex.eng@gmail.com
+            </a>
         </div>
     );
 }
@@ -325,7 +318,7 @@ class Elem extends React.Component {
 
                         </div>
                         <div class="col-sm">
-                            <CrossfadeImage duration={1000} timingFunction={"ease-out"} src={this.state.images[this.state.imageIndex]} />
+                            {/* <CrossfadeImage duration={1000} timingFunction={"ease-out"} src={this.state.images[this.state.imageIndex]} /> */}
                         </div>
 
                     </div>
@@ -337,7 +330,7 @@ class Elem extends React.Component {
                     <div class="row divColor">
 
                         <div class="col-sm">
-                            < CrossfadeImage duration={1000} timingFunction={"ease-out"} src={this.state.images[this.state.imageIndex + 1]} />
+                            {/* < CrossfadeImage duration={1000} timingFunction={"ease-out"} src={this.state.images[this.state.imageIndex + 1]} /> */}
                         </div>
 
                         <div class="col-sm">
@@ -366,9 +359,9 @@ class Elem extends React.Component {
                 <div class="container">
                     <div class="row">
                         <div class="col-sm">{slideImages.length > 4 ? (
-                            <CrossfadeImage duration={1000}
-                                timingFunction={"ease-out"} src={this.state.images[this.state.imageIndex + 2]} />
-
+                            // <CrossfadeImage duration={1000}
+                            //     timingFunction={"ease-out"} src={this.state.images[this.state.imageIndex + 2]} />
+                            <div />
 
                         ) : (null)}
 
@@ -384,4 +377,4 @@ class Elem extends React.Component {
         );
     }
 }
-export default withRouter(Elem)
+export default Elem

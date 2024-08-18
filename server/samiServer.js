@@ -68,6 +68,7 @@ var port = process.env.PORT || 9999;             // default port number
 var bodyParser = require('body-parser');
 var multer = require('multer');
 const { strict } = require('assert');
+const { response } = require('express');
 
 // Create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -436,7 +437,12 @@ app.put('/add_items/:id', express.json({ type: '*/*' }), (req, res) => {
     addQuery(area,name,location,year,cat_id,res);
 })
 
+app.put('/add_project/', express.json({ type: '*/*' }), (req, res) => {
+    console.log('oooo')
+    // Prepare output in JSON format, we are reading info from the request
+    addProject(req.body, res)
 
+})
 
 function addQuery(areaa,namee,locationn,yearr,cat_id,res){
             var sql = `INSERT INTO ${cat_id} (area,name,location,year,image,category_id,images) VALUES('${areaa}','${namee}','${locationn}','${yearr}','""','${cat_id}','""') `; //get the first 3 records only
@@ -565,7 +571,7 @@ app.post('/file_upload', function (req, res) {
 var server = app.listen(port, function () {
     var host = server.address().address
     var port = server.address().port
-
+    console.log('host ' + host)
     console.log("Server listening at http://%s:%s", host, port)
 
 })
@@ -591,7 +597,6 @@ app.get('/load_image', function (req, res) {
     var data = fs.readFileSync(file);
     console.log(data);
     res.end(data);
-    
    })
 
 function executeQuery(res,table_name) {
@@ -619,6 +624,32 @@ function executeQuery(res,table_name) {
 
     });
     
-    
+}
+
+/******** NEW FNCTIONS ******* */
+function addProject(projectObject, res) {
+    let response = {}
+    const {name, area, location, year, cat_id, image, images } = projectObject;
+    var sql = `INSERT INTO project (area,name,location,year,image,cat_id,images) VALUES('${area}','${name}','${location}','${year}','""','${cat_id}','""') `; //get the first 3 records only
+    console.log(sql);
+    db.query(sql, function (err, result) {
+        if (err) { 
+            console.log(' EROR INSERTING ITEM' + err)
+            response = { success: "fail" } }
+        response = {
+            id: "",
+            name: name,
+            location: location,
+            year: year,
+            area: area,
+            success: "success"
+        };
+ console.log(' RESU:T+ '+result)
+        // console.log("record contents", JSON.stringify(response));
+        res.send(response);
+    })
+    //  return response;
 
 }
+
+

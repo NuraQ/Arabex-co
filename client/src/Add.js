@@ -1,378 +1,270 @@
-import React from 'react';
-import DatePicker from 'react-date-picker';
-import LoggedHeader from './LoggedHeader'
+import React, { useEffect, useState } from 'react';
+import './Add.css';
 
-//import ReactDOM from 'react-dom';
-// Usually we use one component per file, here we have more
-import { MeventEmitter, url_g, User_g } from './globals.js'
-import Dropdown from 'react-dropdown'
-import './Add.css'
+const Projectcat_idDropdown = ({ onSelect }) => {
+    const projectcat_ids = [
+        "Villa", "Conservation", "Landscaping", "OFFICE_BUILDINGS",
+        "INTERIOR_DESIGN", "PUBLIC", "EDUCATIONAL", "INDUSTRIAL"
+    ];
 
-const options = [
-    { value: 'one', label: 'One' },
-    { value: 'two', label: 'Two', className: 'myOptionClassName' },
-    {
-        type: 'group', name: 'group1', items: [
-            { value: 'three', label: 'Three', className: 'myOptionClassName' },
-            { value: 'four', label: 'Four' }
-        ]
-    },
-    {
-        type: 'group', name: 'group2', items: [
-            { value: 'five', label: 'Five' },
-            { value: 'six', label: 'Six' }
-        ]
-    }
-]
-const defaultOption = options[0]
+    return (
+        <div className="dropdown">
+            <button className="dropbtn" id="change">Select project cat_id</button>
+            <div className="dropdown-content">
+                {projectcat_ids.map(cat_id => (
+                    <button
+                        key={cat_id}
+                        className="sub_menu"
+                        name={cat_id}
+                        onClick={() => onSelect(cat_id)}
+                    >
+                        {cat_id}
+                    </button>
+                ))}
+            </div>
+        </div>
+    );
+};
 
+const ImageUploader = ({ onFileSelect, imageName, fileUrl, isUploaded, imgServerUrl }) => (
+    <div className="col-sm">
+        <p>Insert main image</p>
+        <input cat_id="file" name='file' id='image' onChange={onFileSelect} />
 
-class Add extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            age: 50, //null,
-            //other properties
-            file_url: null,
-            images: "",
-            imageName: null,
-            imageSource: null,
-            isUploading: false,
-            isUploaded: false,
-            mainImage: "image",
-            jsonResponse: {},
-            type: "",
-            name: "",
-            location: "",
-            area: "", //null,
-            year: "",
-            file: "",
-            adminId: "",
-            adminPassword: "",
-            ID: null,
-            year: new Date(),
-            //other properties
-        }
-        //this.onChange = this.onChange.bind(this);
-    }
+        {imageName && isUploaded && (
+            <img src={encodeURI(imgServerUrl)} style={{ width: 200, height: 120 }} alt="Uploaded" />
+        )}
 
-    async fetchImage(data) {
-        var url = "https://arabex-server.herokuapp.com/file_upload";
+        <img src={fileUrl} style={{ width: 200, height: 120 }} alt="Selected" />
+    </div>
+);
 
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
+const AdminForm = ({ onChange, onSubmit, onDelete }) => (
+    <div className="form-style-5">
+        <p>Enter Admin ID</p>
+        <input cat_id='text' name='adminId' onChange={onChange} />
 
-            body: data,
-            credentials: 'include'
+        <p>Enter Admin Password</p>
+        <input cat_id='text' name='adminPassword' onChange={onChange} />
 
-        });
-        const body = await response.text();
+        <button cat_id="button" onClick={onSubmit}>Add New Admin</button>
+        <button onClick={onDelete}>DELETE</button>
+    </div>
+);
 
+const Add = () => {
+    const [state, setState] = useState({
+        age: 50,
+        file_url: null,
+        images: "",
+        imageName: null,
+        imageSource: null,
+        isUploading: false,
+        isUploaded: false,
+        mainImage: "image",
+        jsonResponse: {},
+        cat_id: "",
+        name: "",
+        location: "",
+        area: "",
+        year: new Date(),
+        file: "",
+        adminId: "",
+        adminPassword: "",
+        id: null,
+    });
 
+    useEffect(() => {
+        // Initial setup or data fetching can go here
+    }, []);
 
-    }
-    componentDidMount() {
-        /* var urlll = "https://arabex-server.herokuapp.com/redirectPage/";
- 
-         fetch(urlll, {
-             method: 'POST',
-             headers: {
-                 'Content-Type': 'application/x-www-form-urlencoded',
-             },
- 
-             body: "data"
-         }).then(res => JSON.stringify(res))
-         .then(res =>alert(res));
-         ;
-     }*/
-    }
-    handleImg = (e) => {
-        let file = e.target.files[0];
-        this.setState({ file: file });
-        // this.fetchImage(file);
-    }
-
-    mySubmitHandler() {
-        // if (!this.state.imageSource) return;
-        //if (!this.isUploading) return;
-        console.log("dddd===================dddddddd");
-
-        let url = "https://arabex-server.herokuapp.com/file_upload";
-        var imageName = this.state.imageName;
-        const data = new FormData();
-        data.append("file", this.state.imageSource);
-        data.append("imageName", this.state.imageName);
-        data.append('id', this.state.ID);
-        data.append('type', this.state.type);
-        data.append('mainImage', this.state.mainImage);
-        data.append('cat_id', this.state.type);
-
-        if (this.state.mainImage.localeCompare("images") == 0) {
-            this.state.images += this.state.imageName + ",";
-        }
-        data.append("images", this.state.images);
-
-        console.log("dddd===================dddddddd");
-        console.log(this.state.jsonResponse.id);
-        this.setState({ isUploaded: false, isUploading: true })
-        fetch(url, {
-            method: 'post',
-            body: data
-
-        }).then(response => { alert(response); return response.json(); })
-            .then(json => {
-                this.setState({ isUploading: false, jsonResponse: json, isUploaded: true })
-            }).catch((error) => {
-                //success = false;
-                console.log(error);
-                alert("error:" + error)
-                //func_fail.apply(obj,[error]);
-                this.setState({ isUploading: false });
-            });
-    }
-
-    async doFetch() {
-        //console.log(this.state);
-
-        var url = "https://arabex-server.herokuapp.com/add_items/:id"
-        const response = await fetch(url, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'same-origin',
-
-
-            body: JSON.stringify(this.state),
-        });
-
-
-        this.state.jsonResponse = await response.json();
-        this.state.ID = await this.state.jsonResponse.id;
-        this.state.images = "";
-        console.log("stsID" + this.state.ID);
-        alert(this.state.jsonResponse.success);
-
-        this.mySubmitHandler();
-
-        //onsole.log("InsertID"+this.state.ID);
-        //console.log(this.state.jsonResponse.insertid);
-
-
-
-    }
-    handleID = e => {
-        this.setState({ [e.target.name]: e.target.value });
-        console.log(e.target.value);
-
-        console.log(e.target.name);
-
-    }
-    handleSelectedFile = event => {
+    const handleFileSelect = (e) => {
         try {
-            let file = event.target.files[0];
-            console.log(event.target.files[0]);
-            let file_url = URL.createObjectURL(file)
-            this.setState({
-
+            let file = e.target.files[0];
+            let file_url = URL.createObjectURL(file);
+            setState(prevState => ({
+                ...prevState,
                 imageName: file.name,
                 imageSource: file,
-                mainImage: event.target.id,
-                file_url: file_url, //for local
+                mainImage: e.target.id,
+                file_url,
                 isUploaded: false,
                 isUploading: false
-            });
+            }));
         } catch (err) {
-            alert("Error nothing chosen")
+            alert("Error: nothing chosen");
         }
-        console.log(this.state.mainImage);
+    };
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setState(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
 
+    const handleProjectcat_idSelect = (cat_id) => {
+        setState(prevState => ({
+            ...prevState,
+            cat_id
+        }));
+        document.getElementById("change").innerText = cat_id;
+    };
+
+    const handleImageUpload = async () => {
+        const url = "https://arabex-server.herokuapp.com/file_upload";
+        const data = new FormData();
+        data.append("file", state.imageSource);
+        data.append("imageName", state.imageName);
+        data.append('id', state.ID);
+        data.append('cat_id', state.cat_id);
+        data.append('mainImage', state.mainImage);
+
+        if (state.mainImage.localeCompare("images") === 0) {
+            state.images += `${state.imageName},`;
+        }
+        data.append("images", state.images);
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                body: data
+            });
+
+            const json = await response.json();
+            setState(prevState => ({
+                ...prevState,
+                isUploading: false,
+                jsonResponse: json,
+                isUploaded: true
+            }));
+
+        } catch (error) {
+            console.error(error);
+            alert("Error: " + error);
+            setState(prevState => ({ ...prevState, isUploading: false }));
+        }
+    };
+
+    const addProjectToApi = async() => {
+        alert('eeeeeeeee')
+        const url = "http://localhost:9999/add_project/";
+        try {
+            const response = await fetch(url, {
+                method: 'PUT',
+                credentials: 'same-origin',
+                body: JSON.stringify(state),
+            });
+alert('[[[[[[[[-------   '+response)
+            // const jsonResponse = await response.json();
+            // setState(prevState => ({
+            //     ...prevState,
+            //     jsonResponse,
+            //     ID: jsonResponse.id,
+            //     images: ""
+            // }));
+
+            // alert(JSON.stringify(jsonResponse) );
+            // handleImageUpload();
+
+        } catch (error) {
+            alert('ERRROR::   '+ error)
+            console.error("Error submitting form: ", error);
+        }
     }
+    const handleSubmit = async () => {
+        const url = "https://arabex-server.herokuapp.com/add_items/:id";
+        try {
+            const response = await fetch(url, {
+                method: 'PUT',
+                headers: { 'Content-cat_id': 'application/json' },
+                credentials: 'same-origin',
+                body: JSON.stringify(state),
+            });
 
+            const jsonResponse = await response.json();
+            setState(prevState => ({
+                ...prevState,
+                jsonResponse,
+                ID: jsonResponse.id,
+                images: ""
+            }));
 
-    submitInput() {
-        // event.preventDefault();
-        this.doFetch();
-        // this.mySubmitHandler();
-    }
-    myChangeHandler = (event) => {
+            alert(jsonResponse.success);
+            handleImageUpload();
 
-        let nam = event.target.name;
-        let value = event.target.value;
-        console.log(nam);
-        this.setState({ [event.target.name]: value });
+        } catch (error) {
+            console.error("Error submitting form: ", error);
+        }
+    };
 
-    }
-    ProjectTypeHandler = (event) => {
+    const handleDelete = async () => {
+        const { ID } = state;
+        const url = `https://arabex-server.herokuapp.com/item_del/${ID}`;
+        try {
+            await fetch(url, {
+                method: "DELETE",
+                body: JSON.stringify({ ID })
+            });
+            console.log("Deleted successfully");
+        } catch (error) {
+            console.error("Error deleting item: ", error);
+        }
+    };
 
-        let nam = event.target.name;
-        console.log(nam);
-        this.setState({ type: nam });
-        document.getElementById("change").innerText = nam
+    const addNewAdmin = async () => {
+        const { adminId, adminPassword } = state;
+        const url = `https://arabex-server.herokuapp.com/add_admin/${adminId}`;
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                body: JSON.stringify({ id: adminId, password: adminPassword })
+            });
 
-    }
-    handleDelete = () => {
-        let { ID } = { ID: 24 };
-        let url = "https://arabex-server.herokuapp.com/item_del/:id"
-        fetch(url, {
-            method: "DELETE",
+            const result = await response.json();
+            alert(result.success);
 
-            body: JSON.stringify({ ID })
-        })
-            .then(res => console.log(res));
-    }
+        } catch (error) {
+            console.error("Error adding new admin: ", error);
+        }
+    };
 
+    const imgServerUrl = `https://arabex-server.herokuapp.com/load_image?img=${state.imageName}&&cat_id=${state.cat_id}`;
 
-    addNewAdmin() {
-        var adminId = this.state.adminId;
-        var adminPassword = this.state.adminPassword;
-        let url = "https://arabex-server.herokuapp.com/add_admin/:id/"
-        fetch(url, {
-            method: "post",
+    return (
+        <div className='row'>
+            <div className="form-style-5">
+                <p>Enter Name:</p>
+                <input cat_id='text' name='name' onChange={handleChange} />
 
-            body: JSON.stringify({ id: adminId, password: adminPassword })
-        })
-            .then(res => res.json)
-            .then(r => alert(r.success));
-    }
+                <p>Enter Area:</p>
+                <input cat_id='text' name='area' onChange={handleChange} />
 
+                <p>Enter Location:</p>
+                <input cat_id='text' name='location' onChange={handleChange} />
 
+                <p>Enter Year:</p>
+                <input name='year' cat_id='text' onChange={handleChange} />
 
-    onChange2 = date => this.setState({ ExpirationDate: date, date: date })
-    onChange = date => this.setState({ year: date })
-    render() {
-        let imgServerUr2 = "https://arabex-server.herokuapp.com/uplds/" + this.state.imageName;
-        let imgServerUrl = "https://arabex-server.herokuapp.com/load_image?img=" + this.state.imageName + "&&type=" + this.state.type;
-        return (
-            <div className='row' >
+                <Projectcat_idDropdown onSelect={handleProjectcat_idSelect} />
 
-                <div class="form-style-5">
+                <ImageUploader
+                    onFileSelect={handleFileSelect}
+                    imageName={state.imageName}
+                    fileUrl={state.file_url}
+                    isUploaded={state.isUploaded}
+                    imgServerUrl={imgServerUrl}
+                />
 
-                    <p>Enter  name:</p>
-                    {this.state.type}
-                    <div>
-                        <div className='inputs' >
-                            <input
-                                type='text'
-                                name='name'
-                                onChange={this.myChangeHandler}
-
-                            />
-                            <p>Enter Area:</p>
-
-                            <input
-                                type='text'
-                                name='area'
-                                onChange={this.myChangeHandler}
-
-                            />
-                            <p>Enter Location:</p>
-                            <input
-                                type='text'
-                                name='location'
-                                onChange={this.myChangeHandler}
-
-                            />
-
-                            <div>
-                                <p>Enter Year:</p>
-
-                                <input name='year'
-                                    type='text'
-                                    onChange={this.myChangeHandler}
-
-                                />
-
-                            </div>
-                            <div class="row">
-                                <div class="col-sm">
-                                    <div class="dropdown" >
-                                        <button className="dropbtn" type="button" id="change" >select project type</button>
-                                        <div class="dropdown-content">
-                                            <button class="sub_menu" name="Villa" onClick={this.ProjectTypeHandler}>Villa</button>
-                                            <button class="sub_menu" name="Conservation" onClick={this.ProjectTypeHandler}>Conservation</button>
-                                            <button class="sub_menu" name="Landscaping" onClick={this.ProjectTypeHandler} >Landscape</button>
-                                            <button class="sub_menu" name="OFFICE_BUILDINGS" onClick={this.ProjectTypeHandler} >OFFICE BUILDINGS</button>
-                                            <button class="sub_menu" name="INTERIOR_DESIGN" onClick={this.ProjectTypeHandler} >INTERIOR DESIGN</button>
-                                            <button class="sub_menu" name="PUBLIC" onClick={this.ProjectTypeHandler}>PUBLIC</button>
-                                            <button class="sub_menu" name="EDUCATIONAL" onClick={this.ProjectTypeHandler} >EDUCATIONAL</button>
-                                            <button class="sub_menu" name="INDUSTRIAL" onClick={this.ProjectTypeHandler} > INDUSTRIAL</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm">
-                                        <p>insert main image</p>
-                                        <input type="file" name='file' id='image'
-                                            onChange={this.handleSelectedFile}
-                                        />
-
-                                        {this.state.imageName && this.state.isUploaded &&
-                                            <img
-                                                src={encodeURI(imgServerUrl)}
-                                                style={{ width: 200, height: 120 }}
-                                            />
-                                        }
-                                        <img
-                                            src={this.state.file_url}
-                                            style={{ width: 200, height: 120 }}
-                                        />
-
-                                        <button type="button" onClick={() => { this.submitInput() }} >add main image and info</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div>
-                        <p>insert other images</p>
-                        <input type="file" name='file' id='images'
-                            onChange={this.handleSelectedFile}
-                        />
-                        {this.state.mainImage}
-                        {this.state.imageName && this.state.isUploaded &&
-                            <img
-                                src={encodeURI(imgServerUrl)}
-                                style={{ width: 200, height: 120 }}
-                            />
-                        }
-                        <img
-                            src={this.state.file_url}
-                            style={{ width: 200, height: 120 }}
-                        />
-                        <button type="button" onClick={() => this.mySubmitHandler()}>add extra images</button>
-
-                    </div>
-                </div>
-
-
-                <div class="form-style-5">
-                    <p>Enter Admin ID</p>
-                    <input
-                        type='text'
-                        name='adminId'
-                        onChange={this.myChangeHandler}
-
-                    />
-
-                    <p>Enter admin password:</p>
-                    <input
-                        type='text'
-                        name='adminPassword'
-                        onChange={this.myChangeHandler}
-
-                    />
-                    <button type="button" onClick={() => this.addNewAdmin()}>add new admin</button>
-                    <button onClick={this.handleDelete}>DELETE</button>
-
-                </div>
+                <button cat_id="button" onClick={addProjectToApi}>Add Main Image and Info</button>
             </div>
 
-        );
-    }
-}
+            <div className="form-style-5">
+                <AdminForm onChange={handleChange} onSubmit={addNewAdmin} onDelete={handleDelete} />
+            </div>
+        </div>
+    );
+};
+
 export default Add;

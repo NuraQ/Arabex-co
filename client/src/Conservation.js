@@ -1,26 +1,13 @@
 
 import React from 'react';
-import archh from './archh.jpg'
 //import ReactDOM from 'react-dom';
 // Usually we use one component per file, here we have more
-import { MeventEmitter, url_g, User_g } from './globals.js'
-import { BrowserRouter as Router, Link, NavLink, Redirect, Prompt, Route } from 'react-router-dom';
-import { withRouter } from "react-router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faYoutube,
-    faFacebook,
-    faTwitter,
-    faInstagram
-  } from "@fortawesome/free-brands-svg-icons";
-  import{
-faEnvelope,
-  }from "@fortawesome/free-regular-svg-icons";
+// import {
+//     faFacebook, faInstagram, faTwitter, faYoutube
+// } from "@fortawesome/free-brands-svg-icons";
+import './gallery.css';
 import GR from './GR.jpg';
-import './gallery.css'
 
-import Elem from './Elem'
-import Home from './Home'
 
 const Contact = () => (
     <div style={{
@@ -60,7 +47,7 @@ const Contact = () => (
  341 Nassau St.
  Princeton, NJ 08540`}
             </pre>
-<SocialFollow />            
+            <SocialFollow />
         </div>
     </div>
 );
@@ -76,36 +63,37 @@ const ColoredLine = ({ color }) => (
 
 function SocialFollow() {
     return (
-      <div className="social-container">
-        <a
-          href="https://www.youtube.com/c/jamesqquick"
-          className="youtube social"
-        >
-          <FontAwesomeIcon icon={faYoutube} size="2x" />
-        </a>
-        <a
-          href="https://www.facebook.com/Arabex-Arab-Experts-For-Architecture-Consultations-377223399037285/"
-          className="facebook social"
-        >
-          <FontAwesomeIcon icon={faFacebook} size="2x" />
-        </a>
-        <a href="https://www.twitter.com/jamesqquick" className="twitter social">
-          <FontAwesomeIcon icon={faTwitter} size="2x" />
-        </a>
-        <a
-          href="https://www.instagram.com/learnbuildteach"
-          className="instagram social"
-        >
-          <FontAwesomeIcon icon={faInstagram} size="2x" />
-        </a>
-        <br></br>
-        <a  href="mailto:arabex.eng@gmail.com"
-          className="social"> 
+        <div />
+        // <div className="social-container">
+        //     <a
+        //         href="https://www.youtube.com/c/jamesqquick"
+        //         className="youtube social"
+        //     >
+        //         <FontAwesomeIcon icon={faYoutube} size="2x" />
+        //     </a>
+        //     <a
+        //         href="https://www.facebook.com/Arabex-Arab-Experts-For-Architecture-Consultations-377223399037285/"
+        //         className="facebook social"
+        //     >
+        //         <FontAwesomeIcon icon={faFacebook} size="2x" />
+        //     </a>
+        //     <a href="https://www.twitter.com/jamesqquick" className="twitter social">
+        //         <FontAwesomeIcon icon={faTwitter} size="2x" />
+        //     </a>
+        //     <a
+        //         href="https://www.instagram.com/learnbuildteach"
+        //         className="instagram social"
+        //     >
+        //         <FontAwesomeIcon icon={faInstagram} size="2x" />
+        //     </a>
+        //     <br></br>
+        //     <a href="mailto:arabex.eng@gmail.com"
+        //         className="social">
 
-        <FontAwesomeIcon  icon={faEnvelope} size="2x" /> 
-        arabex.eng@gmail.com
-        </a>
-      </div>
+        //         <FontAwesomeIcon icon={faEnvelope} size="2x" />
+        //         arabex.eng@gmail.com
+        //     </a>
+        // </div>
     );
 }
 class Conservation extends React.Component {
@@ -188,24 +176,24 @@ class Conservation extends React.Component {
 
                 <div class="container"> <ListGrid /> </div>
 
-                
+
                 <ColoredLine color="rgb(128, 41, 41)" />
                 <div class="container">
                     <div class="row">
                         <div class="col-sm">
-                           <p class="row">Learn more about our team!</p> 
+                            <p class="row">Learn more about our team!</p>
                         </div>
                         <div class="col-sm">
                         </div>
                         <span className="vline"></span>
-                        <div class="col-sm"/>
+                        <div class="col-sm" />
 
                         <div class="col-sm">
                             <button >meet our team!</button>
                             <div class="row"><br></br></div>
-                            <button>Connect with us!</button> 
+                            <button>Connect with us!</button>
 
-                        </div>                 
+                        </div>
                     </div>
                     <div class="row"></div>
 
@@ -217,4 +205,4 @@ class Conservation extends React.Component {
 
 
 }
-export default withRouter(Conservation);
+export default Conservation

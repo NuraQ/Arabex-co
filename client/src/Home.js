@@ -1,118 +1,105 @@
-import React from 'react';
-
-
+import { Grid } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import SimpleCarousel from './globals/Carouse/Carousel';
 import './homee.css';
 
-import Display from './Display';
-import { MeventEmitter, url_g, mainUrl } from './globals.js'
-
-import { BrowserRouter as Router, Link, NavLink, Redirect, Prompt, Route } from 'react-router-dom';
-import { Slide } from 'react-slideshow-image';
-
-
 const ExtraImgs = ({ ELEMENT }) => {
-  var images_array = [];
+    if (ELEMENT) {
+        return (
+            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                {ELEMENT.map(per => (
 
-  if (ELEMENT) {
-    return (ELEMENT.map(per => (
+                    <Grid item xs={2} sm={4} md={4} key={per.index}>
+                        <img
+                            // className="imgStyle"
+                            src={per.image}
+                            alt=""
+                        />
+                    </Grid>
+                ))}
+            </Grid>
+            // ELEMENT.map(per => (
+            //     <div className="grid-item" key={per.image}>
+            //         <div >
+            //             {/* <img
+            //                 className="imgStyle"
+            //                 src={encodeURI(`http://localhost:9999/load_image/?img=${per.image}&&type=${per.category_id}`)}
+            //                 alt=""
+            //             /> */}
+            //             <img
+            //                 className="imgStyle"
+            //                 src={per.image}
+            //                 alt=""
+            //             />
+            //         </div>
+            //     </div>
+            // ))
+        );
+    } else {
+        return (<div></div>);
+    }
+};
 
-      <div className="grid-item" >
-
-            <div className="colorBack">
-              <img class="imgStyle " src={encodeURI("https://arabex-server.herokuapp.com/load_image/?img=" + `${per.image}` + "&&type=" + `${per.category_id}`)} />
-              
-  
-        </div>
-
-      </div>
-
-    ))
-    )
-  } else {
-    return (<div></div>)
-  }
-}
 const properties = {
-  duration: 5000,
-  transitionDuration: 500,
-  infinite: true,
-  indicators: true,
-  arrows: true,
+    duration: 5000,
+    transitionDuration: 500,
+    infinite: true,
+    indicators: true,
+    arrows: true,
+    onChange: (oldIndex, newIndex) => {
+        console.log(`slide transition from ${oldIndex} to ${newIndex}`);
+    }
+};
 
-  onChange: (oldIndex, newIndex) => {
-    console.log(`slide transition from ${oldIndex} to ${newIndex}`);
-  }
-}
 const slideImages = [
-  `https://www.urbanlivingdesigns.in/assets/images/urbanliving/u1-copy.jpg`,
-  `https://images.pexels.com/photos/1034662/pexels-photo-1034662.jpeg?cs=srgb&dl=architecture-buildings-cars-1034662.jpg&fm=jpg`,
-  `https://images.jdmagicbox.com/comp/durgapur/w8/9999px343.x343.160802185947.e5w8/catalogue/finite-spaces-bidhannagar-durgapur-interior-designers-0v7gfrkkfh.jpg`,
+    { image: require('../src/globals/Carouse/uplds/villa_1.jpg') },
+    { image: require('../src/globals/Carouse/uplds/villa_2.jpg') },
+    { image: require('../src/globals/Carouse/uplds/kfc_qalqilya.jpg') },
+    { image: require('../src/globals/Carouse/uplds/cedarz.JPG') },
+    { image: require('../src/globals/Carouse/uplds/school.JPG') },
+    { image: require('../src/globals/Carouse/uplds/pizza_hut.JPG') },
 ];
 
+const arabexSlideImages = [
+    { url: require('../src/globals/Carouse/uplds/cedarz.JPG') },
+    { url: require('../src/globals/Carouse/uplds/school.JPG') },
+    { url: require('../src/globals/Carouse/uplds/pizza_hut.JPG') },
+];
 
 const Slideshow = () => {
-
-  return (
-    <div className="slide-container" >
-      <Slide {...properties}>
-        <div className="each-slide">
-          <div style={{ 'backgroundImage': `url(${slideImages[0]})`, position:"" }}>
-            <div className="outterDiv"> <span className="tdt" >Conservation</span></div> 
-          </div>
-        </div>
-        <div className="each-slide">
-          <div style={{ 'backgroundImage': `url(${slideImages[1]})` }}>
-            <span>Open court awesome project</span>
-
-          </div>
-        </div>
-        <div className="each-slide">
-          <div style={{ 'backgroundImage': `url(${slideImages[2]})` }}>
-            <span>Open court awesome project</span>
-           <div className="outterDiv"><span className="tdt" >Conservation</span></div> 
-
-          </div>
-        </div>
-      </Slide>
-    </div>
-  )
-}
-class Home extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      appeardara: false,
-      loading: true,
-      mainUrl: "https://arabex-server.herokuapp.com",
-
-      persons: [],
-      productTemp: []
-    };
-
-
-  }
-  async componentDidMount() {
-    var url = this.state.mainUrl + "/" + "?type=" + "homeimages";
-    console.log("URL" + url); 
-    console.log("DSd");
-    let response = await fetch(url)
-    let data = await response.json();
-    this.setState({ persons: data, loading: false });
-  }
-  render() {
     return (
-      <div>
-        <div>
-
-          <Slideshow />
-          <div className="grid-container">
-              <ExtraImgs ELEMENT={this.state.persons}></ExtraImgs>
-          </div>
+        <div className="slide-container">
+            <SimpleCarousel carouselList={arabexSlideImages} />
         </div>
-      </div>
     );
-  }
+};
 
-}
-export default (Home);
+const Home = () => {
+    const [persons, setPersons] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const mainUrl = "http://:::9999";
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const url = `${mainUrl}/?type=homeimages`;
+            console.log("URL: " + url);
+            alert('Hello');
+            let response = await fetch(url);
+            let data = await response.json();
+            setPersons(data);
+            setLoading(false);
+        };
+        //  fetchData();
+    }, []);
+
+    return (
+        <div>
+            <Slideshow />
+            <div className="grid-container">
+                <ExtraImgs ELEMENT={slideImages} />
+            </div>
+        </div>
+    );
+};
+
+export default Home;
