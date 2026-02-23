@@ -1,3 +1,26 @@
+# Arabex Architecture Website
+
+A **full-stack freelance project** for an architecture firm, involving frontend development, a Node.js backend, and a SQL database.
+
+## Backend & Database
+
+The backend was implemented using Node.js and SQL to support dynamic content and form handling. Responsibilities included API development, database schema design, and server-side logic.
+
+
+## My Role
+
+I was the sole developer and was responsible for:
+- Frontend development and responsive UI implementation
+- Backend development using Node.js
+- SQL database design and integration
+- End-to-end delivery and deployment
+
+## Tech Stack & Deployment
+
+- Frontend: React (deployed as a static application)
+- Backend: Node.js (deployed on Heroku)
+- Database: SQL (managed cloud database)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
