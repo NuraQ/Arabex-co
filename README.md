@@ -10,7 +10,7 @@ The backend was implemented using Node.js and SQL to support dynamic content and
 ## My Role
 
 I was the sole developer and was responsible for:
-- Frontend development and responsive UI implementation
+- Frontend development and responsive UI implementation using React-js
 - Backend development using Node.js
 - SQL database design and integration
 - End-to-end delivery and deployment
